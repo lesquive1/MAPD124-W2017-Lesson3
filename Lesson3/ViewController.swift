@@ -12,12 +12,28 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showMyAlert()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func showMyAlert(){
+        
+        let alertController = UIAlertController(title: "My Alert!",
+                                               message: "Hello World!",
+                                               preferredStyle: .alert)
+        
+        let cancelButton = UIAlertAction(title: "Cancel",
+                                        style: .cancel,
+                                        handler: nil)
+        
+        alertController.addAction(cancelButton)
+        
+        present(alertController, animated: true, completion: nil)
+        
     }
 
 
