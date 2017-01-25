@@ -15,16 +15,21 @@ class ViewController: UIViewController {
         
     }
     
+    @IBAction func myActionButton(_ sender: UIButton) {
+        showMyActionSheet()
+    }
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //showMyAlert()
         showMyActionSheet()
     }
 
-    func showMyAlert(){
+    func showMyAlert(alertTitle: String, alertMessage: String) {
         
-        let alertController = UIAlertController(title: "My Alert!",
-                                               message: "Hello World!",
+        let alertController = UIAlertController(title: alertTitle,
+                                               message: alertMessage,
                                                preferredStyle: .alert)
         
         let cancelButton = UIAlertAction(title: "Cancel",
@@ -42,11 +47,23 @@ class ViewController: UIViewController {
                                                      message: "Here's a message",
                                                      preferredStyle: .actionSheet)
         
-        let okButton = UIAlertAction(title: "OK",
-                                      style: .destructive,
-                                      handler: nil)
+        let yesButton = UIAlertAction(title: "YES",
+                                      style: .default,
+                                      handler: {
+                                        action in
+                                        self.showMyAlert(alertTitle: "Positive",
+                                                         alertMessage: "Yay! you chose well!")
+                                        })
         
-        actionSheetControler.addAction(okButton)
+        let noButton = UIAlertAction(title: "NO",
+                                     style: .cancel,
+                                     handler: {
+                                        action in
+                                        self.showMyAlert(alertTitle: "Negative", alertMessage: "Boo! you chose bad!")
+                                        })
+        
+        actionSheetControler.addAction(yesButton)
+        actionSheetControler.addAction(noButton)
         
         present(actionSheetControler, animated: true, completion: nil)
         
