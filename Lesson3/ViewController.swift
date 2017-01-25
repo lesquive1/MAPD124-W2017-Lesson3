@@ -17,7 +17,8 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        showMyAlert()
+        //showMyAlert()
+        showMyActionSheet()
     }
 
     func showMyAlert(){
@@ -33,6 +34,21 @@ class ViewController: UIViewController {
         alertController.addAction(cancelButton)
         
         present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    func showMyActionSheet() {
+        let actionSheetControler = UIAlertController(title: "An Action Sheet!",
+                                                     message: "Here's a message",
+                                                     preferredStyle: .actionSheet)
+        
+        let okButton = UIAlertAction(title: "OK",
+                                      style: .destructive,
+                                      handler: nil)
+        
+        actionSheetControler.addAction(okButton)
+        
+        present(actionSheetControler, animated: true, completion: nil)
         
     }
 
