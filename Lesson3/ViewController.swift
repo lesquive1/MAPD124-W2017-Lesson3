@@ -9,10 +9,14 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var x: Professor!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let x = Professor(fullName: "Luis", age: 40)
+        x.SaysHello()
     }
     
     @IBAction func myActionButton(_ sender: UIButton) {
@@ -42,6 +46,11 @@ class ViewController: UIViewController {
         
     }
     
+    func yesButtonHandler(alert: UIAlertAction) {
+        self.showMyAlert(alertTitle: "Positive",
+                         alertMessage: "Yay! you chose well!")
+    }
+    
     func showMyActionSheet() {
         let actionSheetControler = UIAlertController(title: "An Action Sheet!",
                                                      message: "Here's a message",
@@ -49,17 +58,13 @@ class ViewController: UIViewController {
         
         let yesButton = UIAlertAction(title: "YES",
                                       style: .default,
-                                      handler: {
-                                        action in
-                                        self.showMyAlert(alertTitle: "Positive",
-                                                         alertMessage: "Yay! you chose well!")
-                                        })
+                                      handler: yesButtonHandler)
         
         let noButton = UIAlertAction(title: "NO",
                                      style: .cancel,
                                      handler: {
                                         action in
-                                        self.showMyAlert(alertTitle: "Negative", alertMessage: "Boo! you chose bad!")
+                                        self.showMyAlert(alertTitle: "Negative", alertMessage: "Boo! you chose poorly!")
                                         })
         
         actionSheetControler.addAction(yesButton)
